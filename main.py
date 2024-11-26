@@ -7,18 +7,19 @@ pygame.init()
 # Load the track image and get its dimensions
 track = pygame.image.load("assets/track.png")
 track = pygame.transform.scale(
-    track, (track.get_width() // 2.5, track.get_height() // 2.5))
+    track, (track.get_width() // 1.8, track.get_height() // 1.8))
 WIDTH, HEIGHT = track.get_width(), track.get_height()
 
 # Set up the display with dimensions matching the track image
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Drive an F1 Car")
+pygame.display.set_caption("Formulae!")
 
 # Load the F1 car image and set its initial position
 f1_car = pygame.image.load("assets/f1-car.png")
 f1_car = pygame.transform.scale(f1_car, (50, 30))  # Resize for better gameplay
-car_x, car_y = WIDTH // 2, HEIGHT // 2
-car_speed = 5
+car_x, car_y = WIDTH // 3.8, HEIGHT // 3.8
+def_car_speed = 2
+car_speed = def_car_speed
 car_angle = 0
 
 # Function to rotate the car image
@@ -46,9 +47,17 @@ while running:
         car_x -= car_speed * pygame.math.Vector2(1, 0).rotate(-car_angle).x
         car_y -= car_speed * pygame.math.Vector2(1, 0).rotate(-car_angle).y
     if keys[pygame.K_LEFT]:
-        car_angle += 5
+        car_angle += 2
     if keys[pygame.K_RIGHT]:
+        car_angle -= 2
+    if keys[pygame.K_LEFT] and keys[pygame.K_LSHIFT]:
+        car_angle += 5
+    if keys[pygame.K_RIGHT] and keys[pygame.K_LSHIFT]:
         car_angle -= 5
+    if keys[pygame.K_SPACE]:
+        car_speed = 4
+    else:
+        car_speed = def_car_speed
 
     # Draw the track and car
     screen.blit(track, (0, 0))
