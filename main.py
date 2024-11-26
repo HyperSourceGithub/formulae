@@ -18,7 +18,7 @@ pygame.display.set_caption("Formulae!")
 f1_car = pygame.image.load("assets/f1-car.png")
 f1_car = pygame.transform.scale(f1_car, (50, 30))  # Resize for better gameplay
 car_x, car_y = WIDTH // 3.8, HEIGHT // 3.8
-def_car_speed = 2
+def_car_speed = 1.8
 car_speed = def_car_speed
 car_angle = 0
 
@@ -51,9 +51,9 @@ while running:
     if keys[pygame.K_RIGHT]:
         car_angle -= 2
     if keys[pygame.K_LEFT] and keys[pygame.K_LSHIFT]:
-        car_angle += 5
+        car_angle += 3.5
     if keys[pygame.K_RIGHT] and keys[pygame.K_LSHIFT]:
-        car_angle -= 5
+        car_angle -= 3.5
     if keys[pygame.K_SPACE]:
         car_speed = 4
     else:
